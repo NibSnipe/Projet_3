@@ -91,3 +91,28 @@ function filterGallery(category) {
 
 getWorks();
 getCategories();
+
+// zone administrateur
+//création du bandeau mode édition et ajout au DOM
+const header = document.querySelector("header");
+const adminMode = document.createElement("div");
+adminMode.classList.add("admin-mode");
+header.appendChild(adminMode)
+
+const logoAdminMode = document.createElement("i");
+logoAdminMode.classList.add("fa-regular", "fa-pen-to-square");
+adminMode.appendChild(logoAdminMode);
+
+const titleAdminMode = document.createElement("span");
+titleAdminMode.classList.add("admin-title");
+titleAdminMode.textContent = "Mode édition";
+adminMode.appendChild(titleAdminMode);
+
+//Création du lien logout dans le menu de navigation et ajout au DOM
+const navMenu = document.querySelector("nav ul");
+const logout = document.createElement("li");
+const logoutLink = document.createElement("a");
+logoutLink.appendChild(document.createTextNode("logout"));
+logoutLink.setAttribute("href", "./index.html");
+logoutLink.setAttribute("id", "logout-link");
+logout.appendChild(logoutLink);
