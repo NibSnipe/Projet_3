@@ -116,3 +116,8 @@ logoutLink.appendChild(document.createTextNode("logout"));
 logoutLink.setAttribute("href", "./index.html");
 logoutLink.setAttribute("id", "logout-link");
 logout.appendChild(logoutLink);
+//Récupération du logo instagram
+const instaLogo = navMenu.querySelector("li:last-child");
+//Insertion de logout avant le logo instagram
+navMenu.insertBefore(logout, instaLogo);
+
