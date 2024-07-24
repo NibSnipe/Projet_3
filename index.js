@@ -36,6 +36,7 @@ async function getCategories() {
   buttonContainer = document.createElement("div");
   buttonContainer.classList.add("buttons");
   gallery.parentNode.insertBefore(buttonContainer, gallery);
+  buttonContainer.style.display = "flex";
 
   // Création du bouton "Tous"
 
@@ -68,7 +69,6 @@ async function getCategories() {
   // Initialize with the "Tous" filter selected
   filterGallery();
 }
-
 
 function filterGallery(category) {
   currentCategory = category;
@@ -130,7 +130,7 @@ const editIcon = document.createElement("i");
 editIcon.classList.add("fa-regular", "fa-pen-to-square");
 editButton.textContent = "modifier";
 editButton.appendChild(editIcon);
-// Ajoutez le bouton modifier à la balise h2
+// Ajoutez le bouton modifier à la balise h2àà²
 projectTitle.appendChild(editButton);
 
 
@@ -142,13 +142,11 @@ if (localStorage.getItem("token")) {
     logout.style.display ="flex";
     loginLink.style.display = "none";
     editButton.style.display = "flex";
-    buttonContainer.style.display = "none";
 } else {
     getCategories();
     logout.style.display ="none";
     loginLink.style.display = "flex";
     editButton.style.display = "none";
-    buttonContainer.style.display = "flex";
 }
 
 
