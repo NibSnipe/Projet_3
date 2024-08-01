@@ -6,14 +6,13 @@ async function getWorks() {
       throw new Error("Erreur lors de la récupération des données");
     }
     const data = await response.json();
-    renderWorks(data);
+    renderWorks(data);  
   }
 
 // éléments a remplir
 
 const portfolio = document.querySelector("#portfolio");
 const gallery   = document.querySelector(".gallery");
-let buttonContainer;
 
 // Remplir les articles avec boucle foreach 
 

@@ -1,7 +1,13 @@
 // Création de la modale//
+
+
+
 const modal = document.createElement("aside");
 modal.setAttribute("role", "dialog");
 modal.classList.add("modal");
+
+//modal masquer
+modal.style.display= "none" ;
 
 // Ajout de la fenêtre modale au document//
 document.body.appendChild(modal);
@@ -56,23 +62,22 @@ async function getWorksModal() {
       const imgContainer = document.createElement("div");
       imgContainer.classList.add("img-container");
 
-      const imgWrapper = document.createElement("div");
-      imgWrapper.classList.add("img-wrapper");
+      /****const imgWrapper = document.createElement("div");
+      imgWrapper.classList.add("img-wrapper");     *////// effacer
 
       const imgModal = document.createElement("img");
       imgModal.src = item.imageUrl;
       imgModal.classList.add("img-modal")
       imgModal.alt = item.title;
       imgModal.setAttribute("data-id", item.id); // Ajouter l'attribut data-id
-      imgWrapper.appendChild(imgModal);
+      imgContainer.appendChild(imgModal);
 
       const deleteIcon = document.createElement("i");
       deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
       // Ajout de l'écouteur d'événements pour la suppression
       deleteIcon.addEventListener("click", () => deleteWork(item.id, imgContainer));
 
-      imgWrapper.appendChild(deleteIcon);
-      imgContainer.appendChild(imgWrapper);
+      imgContainer.appendChild(deleteIcon);
       displayPhoto.appendChild(imgContainer);
     });
   } catch (error) {
@@ -176,7 +181,7 @@ invalidFile.innerText = "";
 invalidFile.classList.add("invalid-file");
 uploadForm.appendChild(invalidFile); 
 
-//Geston de l'affichage de la photo//
+//Gestion de l'affichage de la photo//
 let img;
 
 // Fonction pour afficher la prévisualisation de l'image//

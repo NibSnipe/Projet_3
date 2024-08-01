@@ -364,8 +364,87 @@ footer nav ul {
 	background: rgba(0, 0, 0, 0.4);
 	display: flex;
 	justify-content: center;
+    justify-items: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
 }
 
+.modal-container{
+	display: flex;
+	background-color: white;
+	width: 40%;
+	height: 75%;
+	justify-items: center;
+	align-items: center;
+	margin-top: 50px;
+	border-radius: 2%;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.backButton{
+	height: 20px;
+	width: 50px;
+	font-size: 50px;
+}
+
+.img-container{
+	display: flex;
+}
+
+.img-container img{
+	width: 75px;
+	position: relative;
+}
+
+.img-container{
+	display: flex;
+}
+
+.display-photo{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 35px 10px;
+	border-bottom: 2px solid;
+	padding-bottom: 55px;
+
+}
+
+.add-button{
+	border-radius: 20%;
+	background-color: #1D6154;
+	color: white;
+}
+
+.add-content{
+	display: flex;
+
+}
+
+
+.fa-solid{
+	height: 38px;
+	width: 34px;
+	background-color: black;
+	border-radius: 5px;
+	
+}
+
+.delete-icon{
+	position: relative;
+	top: 5px;
+	right: 5px;
+	z-index: 1;
+}
+
+
+/*
 .img-modal{
 	
 }
+*/
+
+
+
+
