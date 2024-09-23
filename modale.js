@@ -1,13 +1,11 @@
 // Création de la modale//
 
-
-
 const modal = document.createElement("aside");
 modal.setAttribute("role", "dialog");
 modal.classList.add("modal");
 
 //modal masquer
-modal.style.display= "none" ;
+modal.style.display = "none";
 
 // Ajout de la fenêtre modale au document//
 document.body.appendChild(modal);
@@ -62,12 +60,9 @@ async function getWorksModal() {
       const imgContainer = document.createElement("div");
       imgContainer.classList.add("img-container");
 
-      /****const imgWrapper = document.createElement("div");
-      imgWrapper.classList.add("img-wrapper");     *////// effacer
-
       const imgModal = document.createElement("img");
       imgModal.src = item.imageUrl;
-      imgModal.classList.add("img-modal")
+      imgModal.classList.add("img-modal");
       imgModal.alt = item.title;
       imgModal.setAttribute("data-id", item.id); // Ajouter l'attribut data-id
       imgContainer.appendChild(imgModal);
@@ -75,7 +70,9 @@ async function getWorksModal() {
       const deleteIcon = document.createElement("i");
       deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
       // Ajout de l'écouteur d'événements pour la suppression
-      deleteIcon.addEventListener("click", () => deleteWork(item.id, imgContainer));
+      deleteIcon.addEventListener("click", () =>
+        deleteWork(item.id, imgContainer)
+      );
 
       imgContainer.appendChild(deleteIcon);
       displayPhoto.appendChild(imgContainer);
@@ -85,7 +82,7 @@ async function getWorksModal() {
   }
 }
 
- // Fonction de suppression de projet //
+// Fonction de suppression de projet //
 async function deleteWork(id, imgContainer) {
   try {
     // Vérification que le jeton d'authentification est défini//
@@ -111,7 +108,9 @@ async function deleteWork(id, imgContainer) {
       }
 
       // Suppression de l'élément de la galerie principale//
-      const projectElement = document.querySelector(`.gallery .projectElement[data-id="${id}"]`);
+      const projectElement = document.querySelector(
+        `.gallery .projectElement[data-id="${id}"]`
+      );
       if (projectElement) {
         projectElement.remove();
       }
@@ -119,7 +118,10 @@ async function deleteWork(id, imgContainer) {
       console.error("Erreur lors de la suppression de l'élément");
     }
   } catch (error) {
-    console.error("Une erreur s'est produite lors de la suppression de l'élément : ", error);
+    console.error(
+      "Une erreur s'est produite lors de la suppression de l'élément : ",
+      error
+    );
   }
 }
 //Variable de chargement de la modale//
@@ -132,7 +134,7 @@ modalContent.appendChild(addContent);
 addContent.style.display = "none";
 
 //Création du formulaire d'ajout de photo//
-const uploadForm = document.createElement ("form");
+const uploadForm = document.createElement("form");
 uploadForm.classList.add("upload-form");
 uploadForm.setAttribute("id", "upload");
 addContent.appendChild(uploadForm);
@@ -172,14 +174,14 @@ inputButton.appendChild(uploadText);
 //Création de la description//
 const uploadDescription = document.createElement("p");
 uploadDescription.classList.add("upload-description");
-uploadDescription.innerText ="jpg, png : 4mo max";
+uploadDescription.innerText = "jpg, png : 4mo max";
 addFileContainer.appendChild(uploadDescription);
 
 //Création d'un message d'erreur si format photo invalide//
 const invalidFile = document.createElement("p");
 invalidFile.innerText = "";
 invalidFile.classList.add("invalid-file");
-uploadForm.appendChild(invalidFile); 
+uploadForm.appendChild(invalidFile);
 
 //Gestion de l'affichage de la photo//
 let img;
@@ -201,7 +203,8 @@ function displayImagePreview(file) {
     uploadFileContainer.appendChild(uploadBackground);
     uploadFileContainer.appendChild(addFileContainer);
   } else if (file.size > 4 * 1024 * 1024) {
-    invalidFile.innerText = "Veuillez sélectionner un fichier de moins de 4 Mo.";
+    invalidFile.innerText =
+      "Veuillez sélectionner un fichier de moins de 4 Mo.";
     // Ajouter uploadBackground et addFileContainer en cas de fichier trop volumineux//
     uploadFileContainer.appendChild(uploadBackground);
     uploadFileContainer.appendChild(addFileContainer);
@@ -301,12 +304,15 @@ submitButton.classList.add("submit-button");
 submitButton.textContent = "Valider";
 submitButton.disabled = true; // Désactiver le bouton par défaut
 addWork.appendChild(submitButton);
-submitButton.style.display ="none";
-
+submitButton.style.display = "none";
 
 // Fonction pour vérifier la validité du formulaire//
 function isFormValid() {
-  return addFileBtn.files.length > 0 && nameInput.value.trim() !== "" && categorySelect.value !== "";
+  return (
+    addFileBtn.files.length > 0 &&
+    nameInput.value.trim() !== "" &&
+    categorySelect.value !== ""
+  );
 }
 
 // Écouteurs d'événements pour mettre à jour l'état du bouton de soumission//
@@ -318,7 +324,9 @@ categorySelect.addEventListener("change", updateSubmitButtonState);
 function updateSubmitButtonState() {
   const isValid = isFormValid();
   submitButton.disabled = !isValid;
-  submitButton.style.backgroundColor = submitButton.disabled ? "gray" : "#1D6154";
+  submitButton.style.backgroundColor = submitButton.disabled
+    ? "gray"
+    : "#1D6154";
 }
 
 // Appeler la fonction une fois au chargement de la page pour s'assurer que le bouton est désactivé par défaut//
@@ -356,11 +364,14 @@ async function sendWork(formData) {
       console.error("Erreur lors de l'envoi de l'œuvre");
     }
   } catch (error) {
-    console.error("Une erreur s'est produite lors de l'envoi de l'œuvre : ", error);
+    console.error(
+      "Une erreur s'est produite lors de l'envoi de l'œuvre : ",
+      error
+    );
   }
 }
 
-// Écouteur d'événements pour le bouton de soumission du formulaire//
+// Écouteur bouton de soumission du formulaire//
 submitButton.addEventListener("click", async (e) => {
   e.preventDefault();
 
@@ -375,9 +386,6 @@ submitButton.addEventListener("click", async (e) => {
     const imgContainer = document.createElement("div");
     imgContainer.classList.add("img-container");
 
-    const imgWrapper = document.createElement("div");
-    imgWrapper.classList.add("img-wrapper");
-
     const imgModal = document.createElement("img");
     imgModal.src = newWork.imageUrl;
     imgModal.alt = newWork.title;
@@ -389,13 +397,15 @@ submitButton.addEventListener("click", async (e) => {
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
     // Ajout de l'écouteur d'événements pour la suppression
-    deleteIcon.addEventListener("click", () => deleteWork(newWork.id, imgContainer));
+    deleteIcon.addEventListener("click", () =>
+      deleteWork(newWork.id, imgContainer)
+    );
 
     imgWrapper.appendChild(deleteIcon);
     imgContainer.appendChild(imgWrapper);
     displayPhoto.appendChild(imgContainer);
 
-    // Ajouter la nouvelle œuvre à la galerie // 
+    // Ajouter la nouvelle œuvre à la galerie //
     const gallery = document.querySelector(".gallery");
     const projectElement = document.createElement("article");
     projectElement.classList.add("projectElement");
@@ -411,21 +421,21 @@ submitButton.addEventListener("click", async (e) => {
 
     gallery.appendChild(projectElement);
 
-  // Réinitialiser le formulaire//
-  addFileBtn.value = "";
-  nameInput.value = "";
-  categorySelect.selectedIndex = 0;
-  uploadFileContainer.innerHTML = "";
-  invalidFile.innerText = "";
-  uploadFileContainer.appendChild(uploadBackground);
-  uploadFileContainer.appendChild(addFileContainer);
+    // Réinitialiser le formulaire//
+    addFileBtn.value = "";
+    nameInput.value = "";
+    categorySelect.selectedIndex = 0;
+    uploadFileContainer.innerHTML = "";
+    invalidFile.innerText = "";
+    uploadFileContainer.appendChild(uploadBackground);
+    uploadFileContainer.appendChild(addFileContainer);
 
-  // Mettre à jour l'état du bouton de soumission//
-  updateSubmitButtonState();
+    // Mettre à jour l'état du bouton de soumission//
+    updateSubmitButtonState();
   }
 });
 
-
+const editButton = document.querySelector(".edit-button");
 
 // Ajout de l'écouteur d'évènement pour afficher la modale//
 editButton.addEventListener("click", () => {
@@ -440,36 +450,35 @@ editButton.addEventListener("click", () => {
     modalContentLoaded = true;
   }
 
-//Ajout de l'event listener pour basculer sur la seconde modale d'ajout de photo//
-addButton.addEventListener("click", () =>{
-  displayPhoto.style.display = "none"
-  modalTitle.textContent = "Ajout photo";
-  backIcon.style.color = "black";
-  addContent.style.display = "flex";
-  submitButton.style.display = "block";
-  addButton.style.display =  "none";
-});
+  //Ajout de l'event listener pour basculer sur la seconde modale d'ajout de photo//
+  addButton.addEventListener("click", () => {
+    displayPhoto.style.display = "none";
+    modalTitle.textContent = "Ajout photo";
+    backIcon.style.color = "black";
+    addContent.style.display = "flex";
+    submitButton.style.display = "block";
+    addButton.style.display = "none";
+  });
 
-//Revenir en arrière sur la modale //
-backButton.addEventListener("click", () => {
-  displayPhoto.style.display = "flex"
-  modalTitle.textContent = "Galerie photo";
-  backIcon.style.color = "white";
-  addContent.style.display = "none";
-  submitButton.style.display = "none";
-  addButton.style.display =  "block";
-  uploadFileContainer.innerHTML = "";
-  uploadFileContainer.appendChild(uploadBackground);
-  uploadFileContainer.appendChild(addFileContainer);
-})
+  //Revenir en arrière sur la modale //
+  backButton.addEventListener("click", () => {
+    displayPhoto.style.display = "grid";
+    modalTitle.textContent = "Galerie photo";
+    backIcon.style.color = "white";
+    addContent.style.display = "none";
+    submitButton.style.display = "none";
+    addButton.style.display = "block";
+    uploadFileContainer.innerHTML = "";
+    uploadFileContainer.appendChild(uploadBackground);
+    uploadFileContainer.appendChild(addFileContainer);
+  });
 
-// Fermer la modale avec le bouton close //  
+  // Fermer la modale avec le bouton close //
   closeButton.addEventListener("click", () => {
     modal.style.display = "none";
     modalContent.style.display = "none";
   });
 });
-
 
 //Fermer la modale en cliquant en dehors de la modale//
 modal.addEventListener("click", (e) => {
@@ -478,4 +487,3 @@ modal.addEventListener("click", (e) => {
     modal.style.display = "none";
   }
 });
-  
