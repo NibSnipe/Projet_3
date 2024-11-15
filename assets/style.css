@@ -449,7 +449,7 @@ footer nav ul {
 .modal-container {
   display: flex;
   background-color: white;
-  width: 40%;
+  width: 45%;
   height: 75%;
   justify-items: center;
   align-items: center;
@@ -459,10 +459,12 @@ footer nav ul {
   justify-content: space-around;
 }
 
+/*  mopdddaaalll meeedddiiiiaaaa */
+
 .modal-buttons {
   display: flex;
   justify-content: space-between;
-  gap: 200px;
+  width: 95%;
 }
 
 .modal-container h2 {
@@ -471,16 +473,18 @@ footer nav ul {
   font-weight: 10;
 }
 
-
-
-.backButton {
+.modal-back-button,
+.modal-close-button {
   height: 20px;
-  width: 50px;
-  font-size: 50px;
+  width: 25px;
+  font-size: 20px;
+  border: none;
+  background: white;
 }
 
 .img-container {
   display: flex;
+  justify-content: center;
 }
 
 .img-container img {
@@ -492,20 +496,15 @@ footer nav ul {
   --fa-primary-color: white;
 }
 
-
-
 .display-photo {
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  column-gap:65px ;
+  column-gap: 65px;
   row-gap: 100px;
   border-bottom: solid 1px #b3b3b3;
-  padding-bottom: 180px;
-  
-
+  padding: 0 40px 120px 40px;
 }
-
 
 .add-button {
   font-family: "Syne";
@@ -515,8 +514,10 @@ footer nav ul {
   color: white;
   cursor: pointer;
   border: none;
-  width: 180px;
-  height: 50px;
+  width: 250px;
+  height: 35px;
+  margin-top: 40px;
+  margin-bottom: 15px;
 }
 
 .submit-button {
@@ -527,20 +528,22 @@ footer nav ul {
   color: white;
   cursor: pointer;
   border: none;
-  width: 180px;
-  height: 50px;
+  width: 250px;
+  height: 35px;
+  margin-top: 33px;
+  margin-bottom: 20px;
 }
 
 .up-file-container {
-	width:380px;
-	height:169px;
-	background-color: #E8F1F7;
-	border-radius: 3px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+  width: 380px;
+  height: 169px;
+  background-color: #e8f1f7;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .name-input {
@@ -563,38 +566,70 @@ footer nav ul {
   font: inherit;
 }
 
-.fa-image{
-	font-size: 60px;
-	color: #b9c5cc;
-	
+.fa-image {
+  font-size: 60px;
+  color: #b9c5cc;
 }
 
-.upload-form{
-    display: grid;
-    gap: 10px;
+.fa-xmark {
+  cursor: pointer;
+}
 
+.fa-arrow-left {
+  cursor: pointer;
+}
+
+.upload-form {
+  display: grid;
+  gap: 10px;
 }
 
 .add-content {
-	justify-content: center;
-	padding-bottom: 3em;
-	margin: 1em 1.2em;
-	border-bottom: 1.5px solid gainsboro;
+  justify-content: center;
+  padding-bottom: 3em;
+  margin: 1em 1.2em;
+  border-bottom: 1.5px solid gainsboro;
 }
 
-
-
-.fa-solid {
-  height: 25px;
-  width: 19px;
-  background-color: black;
-  border-radius: 5px;
+.add-work {
+  margin-top: -75px;
 }
 
 .delete-icon {
   position: relative;
   top: 5px;
-  left: 50px;
+  left: 23px;
   z-index: 1;
+  background: black;
+  color: white;
+  padding: 2px;
+  cursor: pointer;
 }
 
+.add-file-btn {
+  opacity: 0; /* Rendre l'input invisible */
+  position: absolute; /* Positionner pour le masquer */
+  width: 0; /* Retirer la largeur */
+  height: 0; /* Retirer la hauteur */
+  z-index: -1; /* Le mettre derrière pour éviter les interactions directes */
+}
+
+.input-add-btn {
+  position: relative;
+  cursor: pointer; /* Rendre le bouton cliquable */
+  height: 35px;
+  width: 200px;
+  border-radius: 12px;
+  border: none;
+  background-color: #d8d6d4;
+  margin: 10px;
+}
+
+.upload-text {
+  cursor: pointer; /* Rendre le label cliquable */
+}
+
+.upload-description {
+  padding-left: 50px;
+  font-size: 12px;
+}

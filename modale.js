@@ -155,6 +155,7 @@ uploadFileContainer.appendChild(addFileContainer);
 //Création du bouton d'ajout de fichier//
 const inputButton = document.createElement("button");
 inputButton.classList.add("input-add-btn");
+inputButton.type = "button";
 addFileContainer.appendChild(inputButton);
 
 const addFileBtn = document.createElement("input");
@@ -218,6 +219,12 @@ function displayImagePreview(file) {
       const img = new Image();
       img.classList.add("photoPreviewImg");
       img.src = url;
+
+      // Définir la taille de l'image en pixels
+      img.style.width = "150px";
+      img.style.height = "170px";
+      img.style.objectFit = "cover";
+
       uploadFileContainer.appendChild(img);
     });
   }
@@ -334,10 +341,11 @@ updateSubmitButtonState();
 
 // Collecter les données du formulaire//
 function collectFormData() {
-  const formData = new FormData();
+  let formData = new FormData();
   formData.append("image", addFileBtn.files[0]);
   formData.append("title", nameInput.value);
-  formData.append("category", categoryId);
+  formData.append("category", categorySelect.value);
+  console.log(formData);
   return formData;
 }
 
@@ -392,19 +400,18 @@ submitButton.addEventListener("click", async (e) => {
     imgModal.style.width = "75px";
     imgModal.style.padding = "0px";
     imgModal.setAttribute("data-id", newWork.id); // Ajouter l'attribut data-id //
-    imgWrapper.appendChild(imgModal);
 
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
+
+    imgContainer.appendChild(imgModal);
+    imgContainer.appendChild(deleteIcon);
+    displayPhoto.appendChild(imgContainer);
+
     // Ajout de l'écouteur d'événements pour la suppression
     deleteIcon.addEventListener("click", () =>
       deleteWork(newWork.id, imgContainer)
     );
-
-    imgWrapper.appendChild(deleteIcon);
-    imgContainer.appendChild(imgWrapper);
-    displayPhoto.appendChild(imgContainer);
-
     // Ajouter la nouvelle œuvre à la galerie //
     const gallery = document.querySelector(".gallery");
     const projectElement = document.createElement("article");
@@ -429,6 +436,16 @@ submitButton.addEventListener("click", async (e) => {
     invalidFile.innerText = "";
     uploadFileContainer.appendChild(uploadBackground);
     uploadFileContainer.appendChild(addFileContainer);
+
+    // Fermeture de la modal et
+    modal.style.display = "none";
+    modalContent.style.display = "none";
+    displayPhoto.style.display = "grid";
+    modalTitle.textContent = "Galerie photo";
+    backIcon.style.color = "white";
+    addContent.style.display = "none";
+    submitButton.style.display = "none";
+    addButton.style.display = "block";
 
     // Mettre à jour l'état du bouton de soumission//
     updateSubmitButtonState();
@@ -477,6 +494,16 @@ editButton.addEventListener("click", () => {
   closeButton.addEventListener("click", () => {
     modal.style.display = "none";
     modalContent.style.display = "none";
+
+    displayPhoto.style.display = "grid";
+    modalTitle.textContent = "Galerie photo";
+    backIcon.style.color = "white";
+    addContent.style.display = "none";
+    submitButton.style.display = "none";
+    addButton.style.display = "block";
+    uploadFileContainer.innerHTML = "";
+    uploadFileContainer.appendChild(uploadBackground);
+    uploadFileContainer.appendChild(addFileContainer);
   });
 });
 
@@ -485,5 +512,15 @@ modal.addEventListener("click", (e) => {
   if (e.target === modal) {
     modalContent.style.display = "none";
     modal.style.display = "none";
+
+    displayPhoto.style.display = "grid";
+    modalTitle.textContent = "Galerie photo";
+    backIcon.style.color = "white";
+    addContent.style.display = "none";
+    submitButton.style.display = "none";
+    addButton.style.display = "block";
+    uploadFileContainer.innerHTML = "";
+    uploadFileContainer.appendChild(uploadBackground);
+    uploadFileContainer.appendChild(addFileContainer);
   }
 });
