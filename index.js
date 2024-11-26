@@ -14,15 +14,29 @@ const gallery = document.querySelector(".gallery");
 
 // Remplir les articles sur la page d'accueil
 function renderWorks(data) {
-  gallery.innerHTML = ""; // effacer la galerie //
+  gallery.innerHTML = ""; // Effacer la galerie
+
   data.forEach((item) => {
-    const projectElement = `
-      <article class="projectElement" data-category="${item.category.name}">
-        <img src="${item.imageUrl}" alt="${item.title}">
-        <figcaption>${item.title}</figcaption>
-      </article>
-    `;
-    gallery.innerHTML += projectElement;
+    // Créer un article pour chaque projet
+    const article = document.createElement("article");
+    article.className = "projectElement";
+    article.dataset.category = item.category.name;
+
+    // Ajouter une image au projet
+    const img = document.createElement("img");
+    img.src = item.imageUrl;
+    img.alt = item.title;
+
+    // Ajouter une légende au projet
+    const caption = document.createElement("figcaption");
+    caption.textContent = item.title;
+
+    // Ajouter l'image et la légende dans l'article
+    article.appendChild(img);
+    article.appendChild(caption);
+
+    // Ajouter l'article directement à la galerie
+    gallery.appendChild(article);
   });
 }
 
